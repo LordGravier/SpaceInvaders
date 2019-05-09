@@ -18,15 +18,15 @@ public class Vaisseau {
 	}
 
 	public boolean estOrdonneeCouverte(int y) {
-		return ordonneeLaPlusBasse(y) && ordonneeLaPlusHaute(y);
+		return (ordonneeLaPlusBasse() <= y) && (y <= ordonneeLaPlusHaute());
 	}
 
-	public boolean ordonneeLaPlusBasse(int y) {
-		return this.origine.ordonnee() - this.dimension.hauteur()+ 1 <= y;
+	public int ordonneeLaPlusBasse() {
+		return this.origine.ordonnee() - this.dimension.hauteur()+ 1;
 	}
 
-	public boolean ordonneeLaPlusHaute(int y) {
-		return y <= this.origine.ordonnee();
+	public int ordonneeLaPlusHaute() {
+		return this.origine.ordonnee();
 	}
 
 	public boolean estAbscisseCouverte(int x) {
@@ -53,5 +53,13 @@ public class Vaisseau {
 		  this.origine.changerAbscisse(x);
 		  this.origine.changerOrdonnee(y);
     }
+	
+	public int hauteur() {
+		return this.dimension.hauteur();
+	}
+
+	public int longueur() {
+		return this.dimension.longueur();
+	}
 
 }
