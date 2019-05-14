@@ -28,5 +28,13 @@ public class DessinSpaceInvaders implements DessinJeu {
 		   	crayon.fillRect(vaisseau.abscisseLaPlusAGauche(), vaisseau.ordonneeLaPlusBasse(), vaisseau.longueur(), vaisseau.hauteur());
 
 	   }
+	   
+	   private void dessinerUnMissile(Missile missile,BufferedImage im) {
+		   Graphics2D crayon = (Graphics2D) im.getGraphics();
+
+		   crayon.setColor(Color.blue);
+		   	crayon.fillRect(missile.abscisseLaPlusAGauche(), missile.ordonneeLaPlusBasse(), missile.longueur(), missile.hauteur());
+
+	   }
 
  }
