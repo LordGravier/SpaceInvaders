@@ -1,6 +1,8 @@
 package fr.unilim.iut.spaceinvaders;
 
 public class Constante {
+	
+	public static final int ESPACEJEU_LIMITE_HAUT =0;
 
 	public static final int ESPACEJEU_LONGUEUR = 150;
 	public static final int ESPACEJEU_HAUTEUR = 100;
