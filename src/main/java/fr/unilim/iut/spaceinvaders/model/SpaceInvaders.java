@@ -143,7 +143,10 @@ public class SpaceInvaders implements Jeu {
     public void initialiserJeu() {
 		Position positionVaisseau = new Position(this.longueur/2,this.hauteur-1);
 		Dimension dimensionVaisseau = new Dimension(Constante.VAISSEAU_LONGUEUR, Constante.VAISSEAU_HAUTEUR);
+		Position positionEnvahisseur =new Position(this.longueur/4,this.hauteur/4);
+		Dimension dimensionEnvahisseur = new Dimension(Constante.ENVAHISSEUR_LONGUEUR,Constante.ENVAHISSEUR_HAUTEUR);
 		positionnerUnNouveauVaisseau(dimensionVaisseau, positionVaisseau, Constante.VAISSEAU_VITESSE);
+		positionnerUnNouveauEnvahisseur(dimensionEnvahisseur, positionEnvahisseur, Constante.ENVAHISSEUR_VITESSE);
 	 }
 
     public void tirerUnMissile(Dimension dimensionMissile, int vitesseMissile) {
@@ -195,5 +198,12 @@ public class SpaceInvaders implements Jeu {
 		return this.envahisseur;
 	}
 	
+	public void deplacerEnvahisseur() {
+		if (envahisseur.abscisseLaPlusADroite() < (longueur - 1)) {
+			envahisseur.deplacerHorizontalementVers(Direction.DROITE);
+			envahisseur.setEnvahisseurSeDeplaceVersDroite(true);
+		}
+		
+	}
     
 }

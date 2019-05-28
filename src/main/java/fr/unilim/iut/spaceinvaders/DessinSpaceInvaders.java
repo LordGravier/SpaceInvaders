@@ -52,7 +52,7 @@ public class DessinSpaceInvaders implements DessinJeu {
 	   private void dessinerUnEnvahisseur(Envahisseur envahisseur, BufferedImage im) {
 		   Graphics2D crayon = (Graphics2D) im.getGraphics();
 
-		   crayon.setColor(Color.black);
+		   crayon.setColor(Color.orange);
 		   	crayon.fillRect(envahisseur.abscisseLaPlusAGauche(),envahisseur.ordonneeLaPlusBasse(), envahisseur.longueur(), envahisseur.hauteur());
 
 	   }
