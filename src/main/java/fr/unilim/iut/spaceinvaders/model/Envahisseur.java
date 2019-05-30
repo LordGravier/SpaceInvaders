@@ -2,20 +2,19 @@ package fr.unilim.iut.spaceinvaders.model;
 
 public class Envahisseur extends Sprite {
 	
-	private boolean envahisseurSeDeplaceVersDroite;
+	private boolean SeDeplaceVersLaDroite;
 
 	public Envahisseur(Dimension dimension, Position positionOrigine, int vitesse) {
 		super(dimension, positionOrigine, vitesse);
-		this.envahisseurSeDeplaceVersDroite=true;
+		this.SeDeplaceVersLaDroite=true;
 	}
 
-	public boolean getEnvahisseurSeDeplaceVersDroite() {
-		return envahisseurSeDeplaceVersDroite;
+	public boolean SeDeplaceVersLaDroite() {
+		return SeDeplaceVersLaDroite;
 	}
-
-	public void setEnvahisseurSeDeplaceVersDroite(boolean envahisseurSeDeplaceVersDroite) {
-		this.envahisseurSeDeplaceVersDroite = envahisseurSeDeplaceVersDroite;
-	}
+	public void changerDirectionHoziontale() {
+		this.SeDeplaceVersLaDroite = !this.SeDeplaceVersLaDroite;
+}
 
 }
 

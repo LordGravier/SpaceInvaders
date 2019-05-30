@@ -132,6 +132,9 @@ public class SpaceInvaders implements Jeu {
 		if(this.aUnMissile()) {
 			deplacerMissile();
 		}
+		if(this.aUnEnvahisseur()) {
+			this.deplacerEnvahisseur();	
+		} 
 	}
 	
  
@@ -198,12 +201,65 @@ public class SpaceInvaders implements Jeu {
 		return this.envahisseur;
 	}
 	
-	public void deplacerEnvahisseur() {
-		if (envahisseur.abscisseLaPlusADroite() < (longueur - 1)) {
-			envahisseur.deplacerHorizontalementVers(Direction.DROITE);
-			envahisseur.setEnvahisseurSeDeplaceVersDroite(true);
+	private int derniereAbscisse() {
+		return this.longueur - 1;
+	}
+	private int premiereAbscisse() {
+
+		return this.hauteur - (this.hauteur - 1);
+	}
+	public void deplacerEnvahisseurVersLaDroite() {
+		deplacerSpriteVersLaDroite(envahisseur);
+	}
+
+	public void deplacerEnvahisseurVersLaGauche() {
+		deplacerSpriteVersLaGauche(envahisseur);
+	}
+
+	private void deplacerSpriteVersLaGauche(Sprite sprite) {
+		if (0 < sprite.abscisseLaPlusAGauche()) {
+			sprite.deplacerHorizontalementVers(Direction.GAUCHE);
 		}
-		
+		if (!estDansEspaceJeu(sprite.abscisseLaPlusAGauche(), sprite.ordonneeLaPlusHaute())) {
+			sprite.positionner(0, sprite.ordonneeLaPlusHaute());
+		}
+	}
+	public void deplacerSpriteVersLaDroite(Sprite sprite) {
+
+		if (sprite.abscisseLaPlusADroite() < (longueur - 1)) {
+			sprite.deplacerHorizontalementVers(Direction.DROITE);
+			if (!estDansEspaceJeu(sprite.abscisseLaPlusADroite(), sprite.ordonneeLaPlusHaute())) {
+				sprite.positionner(longueur - sprite.longueur(), sprite.ordonneeLaPlusHaute());
+			}
+		}
+	}
+	
+	public void deplacerEnvahisseur() {
+		if (this.aUnEnvahisseur() && envahisseurSeDeplaceVersLaDroite()) {
+			
+			this.deplacerSpriteVersLaDroite(envahisseur);
+			
+			if(this.aUnEnvahisseur() && envahisseur.abscisseLaPlusADroite() >= this.derniereAbscisse()) {
+				this.envahisseur.changerDirectionHoziontale();
+			}
+			
+
+		} else if (this.aUnEnvahisseur() && envahisseurSeDeplaceVersLaGauche()) {
+
+			this.deplacerSpriteVersLaGauche(envahisseur);
+			
+			if(this.aUnEnvahisseur() && envahisseur.abscisseLaPlusAGauche() <= this.premiereAbscisse()) {
+				this.envahisseur.changerDirectionHoziontale();
+			}
+		}
+	}
+	
+	private boolean envahisseurSeDeplaceVersLaGauche() {
+		return this.aUnEnvahisseur() && this.envahisseur.SeDeplaceVersLaDroite() == false;
+	}
+
+	private boolean envahisseurSeDeplaceVersLaDroite() {
+		return this.aUnEnvahisseur() && this.envahisseur.SeDeplaceVersLaDroite() == true;
 	}
     
 }
